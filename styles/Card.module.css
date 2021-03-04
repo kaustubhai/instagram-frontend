@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+.card{
+ /* Complete card */
+ border: 1px solid #ccc;
+ padding: 10px;
+ margin: 15px 0;
+}
+.head{
+    /* Name of the user, location */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+}
+.user{
+    border-radius: 50%;
+    margin-top: -15px;
+    margin-bottom: -15px;
+}
+.details{
+    font-family: 'Open Sans', sans-serif;
+}
+.details h3{
+    text-align: right;
+    padding: 0;
+}
+.details h5{
+    margin-top: -17px;
+    font-weight: 400;
+    text-align: right;
+}
+.image{
+    /* Image */
+    object-fit: cover;
+    object-position: center;
+}
+.footer{
+    /* Like, number of likes, caption */
+    text-align: center;
+    padding: 0 25px;
+    opacity: 0.7;
+}
+.actions{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    padding: 0 25px;
+}
+.actions h3{
+    font-weight: 500;
+    margin-top: 5px;
+}
+.materialIcons{
+    font-size: 1.8em;
+    margin: 0 5px;
+    cursor: pointer;
+}

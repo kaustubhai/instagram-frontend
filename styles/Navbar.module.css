@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
+.navbar{
+    width: 100%;
+    padding: 0 15%;
+    height: 60px;
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    position: -webkit-sticky;
+    position: sticky;
+    top: -1px;
+}
+.title{
+    font-family: 'Cookie', cursive;
+    font-weight: 400;
+    height: 1.2em !important;
+    width: 1.2em !important;
+}
+.materialIcons{
+    font-size: 1.8em;
+    margin: 0 5px;
+    cursor: pointer;
+}
+.gLogin{
+    display: inline-block;
+}
+.content{
+    margin: auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    width: 750px;
+    justify-content: space-between;
+    height: 100%;
+}
