@@ -1,4 +1,4 @@
-import { USER_LOADING, LOGIN_USER, SET_ERROR, LOGOUT_USER, RESET_ERROR } from '../actions/types'
+import { USER_LOADING, LOGIN_USER, SET_ERROR, LOGOUT_USER, RESET_ERROR, GET_USER } from '../actions/types'
 import cookie from 'js-cookie'
 
 const initialState = {
@@ -15,9 +15,13 @@ const reducer = (state = initialState, action) => {
                 loading: true
             }
         case LOGIN_USER:
-            cookie.set('token', action.payload.res)
+            cookie.set('token', action.payload)
             return {
-                user: action.payload.x,
+                ...state
+            }
+        case GET_USER:
+            return {
+                user: action.payload,
                 loading: false
             }
         case LOGOUT_USER:

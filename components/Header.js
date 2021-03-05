@@ -13,8 +13,7 @@ const Header = () => {
     const user = useSelector(state => state.user)
     const loginResponse = (response) => {
         const user = { name: response.profileObj.name, email: response.profileObj.email, password: response.profileObj.googleId, profile: response.profileObj.imageUrl };
-        const x = { name: response.profileObj.name, email: response.profileObj.email, profile: response.profileObj.imageUrl };
-        dispatch(registerUser(user, x))
+        dispatch(registerUser(user))
     }
     if(!user.user.name)
         return (

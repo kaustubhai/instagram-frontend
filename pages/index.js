@@ -2,15 +2,19 @@ import Head from 'next/head'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllPosts } from '../actions/post'
+import { getUser } from '../actions/user'
 import Card from '../components/Card'
 import User from '../components/User'
 import styles from '../styles/Home.module.css'
+import cookie from 'js-cookie'
 
 export default function Home() {
   const dispatch = useDispatch()
   const [screen, setScreen] = useState("home")
   useEffect(() => {
     dispatch(getAllPosts())
+    if (cookie.get('token'))
+      dispatch(getUser())
   }, [])
   const postsState = useSelector(state => state.posts)
   const { posts, loading } = postsState
