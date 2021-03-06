@@ -6,7 +6,7 @@ import Bookmark from '@material-ui/icons/BookmarkRounded'
 import { likePost } from '../actions/post'
 import { useDispatch, useSelector } from 'react-redux'
 
-const Card = ({ username, userImage, userLocation, image, likes, caption, id }) => {
+const addCard = ({ username, userImage, userLocation, image, likes, caption, id }) => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
     const likeImage = () => {
@@ -39,4 +39,4 @@ const Card = ({ username, userImage, userLocation, image, likes, caption, id }) 
     )
 }
 
-export default Card
+export default addCard

@@ -8,9 +8,8 @@ import User from '../components/User'
 import styles from '../styles/Home.module.css'
 import cookie from 'js-cookie'
 
-export default function Home() {
+export default function Home({ screen }) {
   const dispatch = useDispatch()
-  const [screen, setScreen] = useState("home")
   useEffect(() => {
     dispatch(getAllPosts())
     if (cookie.get('token'))
@@ -30,6 +29,11 @@ export default function Home() {
       <main className={styles.main}>
         {
           screen === "home" && posts.length > 0 && posts.map((post) => (
+            <Card key={post._id} id={post._id} username={post.owner.name} userLocation={post.location} userImage={post.owner.profile} image={post.image.data} likes={post.likes} caption={post.caption}/>
+          )) 
+        }
+        {
+          screen === "liked" && posts.length > 0 && posts.map((post) => (
             <Card key={post.image.data} username={post.owner.name} userLocation={post.location} userImage={post.owner.profile} image={post.image.data} likes={post.likes} caption={post.caption}/>
           )) 
         }

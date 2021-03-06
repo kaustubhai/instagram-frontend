@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <Header screen={screen} setScreen={setScreen}/>
-      <Component {...pageProps} />
+      <Component {...pageProps} screen={screen} setScreen={setScreen} />
     </Provider>
   )
 }

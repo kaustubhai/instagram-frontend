@@ -58,3 +58,9 @@
     margin: 0 5px;
     cursor: pointer;
 }
+
+.disabled{
+    cursor: unset;
+    opacity: 0.6;
+    margin: 0 5px;
+}
