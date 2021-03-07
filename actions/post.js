@@ -72,3 +72,30 @@ export const likePost = (id) => async dispatch => {
         }, 3000)
     }
 }
+
+export const addPost = (formData) => async dispatch => {
+    try {
+        dispatch({
+            type: POST_LOADING
+        })
+        const config = {
+            headers: {
+                'Content-Type': "multipart/form-data"
+            }
+        }
+        const res = await axios.post('http://localhost:5000/api/post', formData, config)
+        console.log(res)
+        dispatch(getAllPosts())
+    } catch (error) {
+        console.log(error)
+        dispatch({
+            type: SET_ERROR,
+            payload: "Internal Server Error"
+        })
+        setTimeout(() => {
+            dispatch({
+                type: RESET_ERROR
+            })
+        }, 3000)
+    }
+}

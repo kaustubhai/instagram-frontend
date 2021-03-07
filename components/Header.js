@@ -41,7 +41,7 @@ const Header = ({ screen, setScreen }) => {
                     <div>
                         <Home className={style.materialIcons}/>
                         <FavoriteBorder className={style.materialIcons, style.disabled} />
-                        <AddCircle className={style.materialIcons, style.disabled}/>
+                        <AddCircleOutlined className={style.materialIcons, style.disabled}/>
                         <div id="googleLogin" className={style.gLogin}></div>
                         <GoogleLogin
                             clientId={process.env.NEXT_PUBLIC_CLIENT_ID}

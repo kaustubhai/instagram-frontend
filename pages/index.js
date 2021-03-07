@@ -7,8 +7,9 @@ import Card from '../components/Card'
 import User from '../components/User'
 import styles from '../styles/Home.module.css'
 import cookie from 'js-cookie'
+import AddCard from '../components/AddCard'
 
-export default function Home({ screen }) {
+export default function Home({ screen, setScreen }) {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getAllPosts())
@@ -28,14 +29,18 @@ export default function Home({ screen }) {
       <User/>
       <main className={styles.main}>
         {
-          screen === "home" && posts.length > 0 && posts.map((post) => (
+          screen === "home" && posts.length > 0 && posts.slice(0).reverse().map((post) => (
             <Card key={post._id} id={post._id} username={post.owner.name} userLocation={post.location} userImage={post.owner.profile} image={post.image.data} likes={post.likes} caption={post.caption}/>
           )) 
         }
         {
-          screen === "liked" && posts.length > 0 && posts.map((post) => (
+          screen === "liked" && posts.length > 0 && posts.slice(0).reverse().map((post) => (
             <Card key={post.image.data} username={post.owner.name} userLocation={post.location} userImage={post.owner.profile} image={post.image.data} likes={post.likes} caption={post.caption}/>
           )) 
+        }
+        {
+          screen === "add" && 
+          <AddCard setScreen={setScreen}/>
         }
       </main>
     </div>

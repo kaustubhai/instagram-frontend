@@ -24,35 +24,24 @@
 .details h3{
     text-align: right;
     padding: 0;
+    margin-bottom: 0;
 }
-.details h5{
-    margin-top: -17px;
-    font-weight: 400;
-    text-align: right;
-    color: red;
+.details input{
+    margin-bottom: 27px;
 }
 .image{
     /* Image */
     object-fit: cover;
     object-position: center;
+    cursor: pointer;
+    margin: auto;
+    text-align: center;
 }
 .footer{
     /* Like, number of likes, caption */
     text-align: center;
     padding: 0 25px;
     opacity: 0.7;
-}
-.actions{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15px;
-    padding: 0 25px;
-}
-.actions h3{
-    font-weight: 500;
-    margin-top: 5px;
 }
 .materialIcons{
     font-size: 1.8em;
@@ -67,17 +56,52 @@
 .button{
     width: 90%;
     display: block;
-    margin: 25px auto;
     border-radius: 5px;
     height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: red;
     color: #fff;
     cursor: pointer;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    font-size: 0.9em;
+    letter-spacing: 0.05em;
 }
 .button:hover{
     opacity: 0.8;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.postButton{
+    margin: -13px auto 13px auto;
+    background-color: red;
+}
+.addButton{
+    margin: 25px auto;
+    background-color: black;
+}
+.locationInput{
+    border: none;
+    outline: none;
+    font-weight: 400;
+    text-align: right;
+    color: red;
+}
+.captionInput{
+    border: none;
+    outline: none;
+    border: 1px solid transparent;
+    text-align: center;
+    padding: 0 25px;
+    width: 90%;
+    font-size: 1em;
+    line-height: 1.2em;
+    height: 12em;
+    padding: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    overflow: visible;
+}
+.captionInput:focus{
+    border: 1px solid #ccc;
 }
