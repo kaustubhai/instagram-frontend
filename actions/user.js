@@ -20,7 +20,7 @@ export const registerUser = (formData, x) => async dispatch => {
                 'Content-Type': "application/json; charset=utf-8"
             }
         }
-        const response = await axios.post('http://localhost:5000/api/user/register', formData, config)
+        const response = await axios.post('https://instagram696-backend.herokuapp.com/api/user/register', formData, config)
         if (response.data.msg !== "User created" || response.data.msg !== "Login")
             dispatch(loginUser(formData))
         else
@@ -50,7 +50,7 @@ export const loginUser = (formData) => async dispatch => {
                 'Content-Type': "application/json; charset=utf-8"
             }
         }
-        const response = await axios.post('http://localhost:5000/api/user/login', formData, config)
+        const response = await axios.post('https://instagram696-backend.herokuapp.com/api/user/login', formData, config)
         dispatch({
             type: LOGIN_USER,
             payload: response.data
@@ -80,7 +80,7 @@ export const getUser = () => async dispatch => {
         dispatch({
             type: USER_LOADING
         })
-        const response = await axios.get('http://localhost:5000/api/user/get')
+        const response = await axios.get('https://instagram696-backend.herokuapp.com/api/user/get')
         dispatch({
             type: GET_USER,
             payload: response.data

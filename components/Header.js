@@ -58,7 +58,7 @@ const Header = ({ screen, setScreen }) => {
                             )}
                             buttonText="Login"
                             onSuccess={loginResponse}
-                            cookiePolicy={'single_host_origin'}
+                            onFailure={(error) => {console.log(error)}}
                         />
                     </div>
                 </div>

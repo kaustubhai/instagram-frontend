@@ -42,7 +42,6 @@ const User = ({setScreen}) => {
                 )}
                 buttonText="Login"
                 onSuccess={loginResponse}
-                cookiePolicy={'single_host_origin'}
             />
         </div>
     )
