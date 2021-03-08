@@ -1,6 +1,12 @@
 import axios from 'axios'
 import { LOAD_POST, POST_LOADING, SET_ERROR, RESET_ERROR } from './types'
-
+import { toast } from 'react-toastify'
+const toastConfig = {
+    position: "bottom-center",
+    pauseOnHover: false,
+    draggable: false,
+    autoClose: 3000
+}
 export const getAllPosts = () => async dispatch => {
     try {
         dispatch({
@@ -55,12 +61,13 @@ export const likePost = (id) => async dispatch => {
             type: POST_LOADING
         })
         const res = await axios.get(`http://localhost:5000/api/like/${id}`)
-        console.log(res.data)
         if (res.data.msg !== "Post liked")
             throw Error("")
         dispatch(getAllPosts())
+        toast.dark('Post liked', toastConfig)
     } catch (error) {
         console.log(error)
+        toast.error('Internal Server Error', toastConfig)
         dispatch({
             type: SET_ERROR,
             payload: "Internal Server Error"
@@ -84,10 +91,16 @@ export const addPost = (formData) => async dispatch => {
             }
         }
         const res = await axios.post('http://localhost:5000/api/post', formData, config)
-        console.log(res)
-        dispatch(getAllPosts())
+        if (res.data.msg === "Post created") {
+            dispatch(getAllPosts())
+            toast.dark('Post Added', toastConfig)    
+        }
+        else {
+            throw Error("Image should be less than 2mb")
+        }
     } catch (error) {
         console.log(error)
+        toast.error('Image should be less than 2mb', toastConfig)
         dispatch({
             type: SET_ERROR,
             payload: "Internal Server Error"

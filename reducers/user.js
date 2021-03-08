@@ -2,7 +2,7 @@ import { USER_LOADING, LOGIN_USER, SET_ERROR, LOGOUT_USER, RESET_ERROR, GET_USER
 import cookie from 'js-cookie'
 
 const initialState = {
-    loading: true,
+    loading: false,
     user: {},
     error: ""
 }
@@ -39,7 +39,7 @@ const reducer = (state = initialState, action) => {
         case RESET_ERROR:
             return {
                 ...state,
-                error: ""
+                error: "",
             }
         default:
             return {...state}

@@ -12,8 +12,8 @@ import {registerUser, logoutUser} from '../actions/user'
 import {getAllPosts, getLiked} from '../actions/post'
 import { useDispatch, useSelector } from 'react-redux'
 import { GoogleLogin } from 'react-google-login';
+import cookie from 'js-cookie'
 const Header = ({ screen, setScreen }) => {
-    console.log(screen)
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
     const loginResponse = (response) => {
@@ -23,14 +23,22 @@ const Header = ({ screen, setScreen }) => {
 
     const onHome = () => {
         dispatch(getAllPosts())
+        cookie.set('screen', 'home')
         setScreen("home")
     }
     const onLiked = () => {
         dispatch(getLiked())
+        cookie.set('screen', 'liked')
         setScreen("liked")
     }
     const onAdd = () => {
+        cookie.set('screen', 'add')
         setScreen("add")
+    }
+    const onLogout = () => {
+        cookie.remove('screen')
+        dispatch(logoutUser())
+        setScreen("home")
     }
 
     if(!user.user.name)
@@ -65,7 +73,7 @@ const Header = ({ screen, setScreen }) => {
                         {screen === 'home' ? <Home className={style.materialIcons} /> : <HomeOutlined onClick={onHome} className={style.materialIcons}/>}
                         {screen === 'liked' ? <Favorite className={style.materialIcons} /> : <FavoriteBorder onClick={onLiked} className={style.materialIcons} />}
                         {screen === 'add' ? <AddCircle className={style.materialIcons} /> : <AddCircleOutlined onClick={onAdd} className={style.materialIcons} />}
-                        <Logout onClick={() => {dispatch(logoutUser())}} className={style.materialIcons}/>
+                        <Logout onClick={onLogout} className={style.materialIcons}/>
                     </div>
                 </div>
             </div>

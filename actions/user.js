@@ -2,6 +2,13 @@ import { USER_LOADING, LOGIN_USER, LOGOUT_USER, SET_ERROR, RESET_ERROR, GET_USER
 import axios from 'axios'
 import cookie from 'js-cookie'
 import setAuthToken from '../utils/setAuthToken'
+import { toast } from 'react-toastify'
+const toastConfig = {
+    position: "bottom-center",
+    pauseOnHover: false,
+    draggable: false,
+    autoClose: 3000
+}
 
 export const registerUser = (formData, x) => async dispatch => {
     try {
@@ -20,6 +27,7 @@ export const registerUser = (formData, x) => async dispatch => {
             throw new Error('Internal Server Error')
     } catch (error) {
         console.log(error)
+        toast.error('Internal Server Error', toastConfig)
         dispatch({
             type: SET_ERROR,
             payload: "Internal Server Error"
@@ -49,8 +57,10 @@ export const loginUser = (formData) => async dispatch => {
         })        
         setAuthToken(response.data)
         dispatch(getUser())
+        toast.dark('You are now logged in', toastConfig)
     } catch (error) {
         console.log(error)
+        toast.error('Internal Server Error', toastConfig)
         dispatch({
             type: SET_ERROR,
             payload: "Internal Server Error"
@@ -71,13 +81,13 @@ export const getUser = () => async dispatch => {
             type: USER_LOADING
         })
         const response = await axios.get('http://localhost:5000/api/user/get')
-        console.log(response.data)
         dispatch({
             type: GET_USER,
             payload: response.data
         })        
     } catch (error) {
         console.log(error)
+        toast.error('Internal Server Error', toastConfig)
         dispatch({
             type: SET_ERROR,
             payload: "Internal Server Error"
@@ -95,8 +105,10 @@ export const logoutUser = () => async dispatch => {
         dispatch({
             type: LOGOUT_USER
         })
+        toast.dark('User logged out', toastConfig)
     } catch (error) {
         console.log(error)
+        toast.error('Internal Server Error', toastConfig)
         dispatch({
             type: SET_ERROR,
             payload: "Internal Server Error"

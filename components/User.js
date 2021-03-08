@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import {registerUser, logoutUser} from '../actions/user'
+import {getAllPosts} from '../actions/post'
 import { useSelector, useDispatch } from 'react-redux'
 import style from '../styles/User.module.css'
 import { GoogleLogin } from 'react-google-login';
+import cookie from 'js-cookie'
 
-const User = () => {
+const User = ({setScreen}) => {
     const [photo, setPhoto] = useState("https://img.icons8.com/metro/26/000000/user-male.png")
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
@@ -21,6 +23,13 @@ const User = () => {
         dispatch(registerUser(user, x))
     }
 
+    const onLogout = () => {
+        setScreen("home")
+        cookie.remove('screen')
+        dispatch(logoutUser())
+        dispatch(getAllPosts())
+    }
+
 
     return (
         <div className={style.card}>
@@ -29,7 +38,7 @@ const User = () => {
             <GoogleLogin
                 clientId={process.env.NEXT_PUBLIC_CLIENT_ID}
                 render={renderProps => (
-                    <a onClick={user.user.name ? () => {dispatch(logoutUser())} : renderProps.onClick} disabled={renderProps.disabled} className={style.link} href="#!">{user.user.name ? 'Logout' : 'Login'}</a>
+                    <a onClick={user.user.name ? onLogout : renderProps.onClick} disabled={renderProps.disabled} className={style.link} >{user.user.name ? 'Logout' : 'Login'}</a>
                 )}
                 buttonText="Login"
                 onSuccess={loginResponse}

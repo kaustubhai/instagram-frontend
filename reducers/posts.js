@@ -1,8 +1,8 @@
-import { POST_LOADING, POST_POST, LOAD_POST, LIKED_POST, CREATED_POST } from '../actions/types'
+import { POST_LOADING, POST_POST, LOAD_POST, SET_ERROR, RESET_ERROR } from '../actions/types'
 
 const initialState = {
     posts: [],
-    loading: true
+    loading: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -16,6 +16,17 @@ const reducer = (state = initialState, action) => {
             return {
                 loading: false,
                 posts: action.payload
+            }
+        case SET_ERROR:
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
+            }
+        case RESET_ERROR:
+            return {
+                ...state,
+                error: "",
             }
         default:
             return { ...state }
